@@ -1,5 +1,13 @@
+import TrendPost from "components/TrendPost/TrendPost";
+import Header from "./components/Header/Header";
+
 const App = () => {
-  return <h1 className="text-emerald-400">Hello world!</h1>;
+  return (
+    <div>
+      <Header />
+      <TrendPost />
+    </div>
+  );
 };
 
 export default App;
