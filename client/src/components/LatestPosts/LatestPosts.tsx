@@ -23,11 +23,15 @@ const LatestPosts: React.FC<IMockDatas> = () => {
         </span>
       </div>
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-3 gap-4  ">
+        <div className="grid w-full  md:grid-cols-2  md:px-20 lg:grid-cols-3 gap-4  ">
           {mockBlogs?.map((item) => (
             <>
-              <div className="flex flex-col justify-center w-[390px] bg-white">
-                <img className="w-[390px] h-[300px] " src={item.image} alt="" />
+              <div className="w-full  flex flex-col justify-center md:max-w-[390px] sm:bg-white">
+                <img
+                  className="w-full md:w-[390px] h-[300px]"
+                  src={item.image}
+                  alt=""
+                />
                 {/* card desc */}
                 <div className="flex justify-between w-full p-2">
                   <span className="text-orange-600 font-semibold text-sm">
