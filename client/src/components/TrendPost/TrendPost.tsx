@@ -4,7 +4,9 @@ import profile from "assets/profile.jpg";
 const TrendPost = () => {
   return (
     <div>
-      <h2 className="text-center text-4xl font-bold mt-4 mb-10">Trending</h2>
+      <h2 className="text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600">
+        Trending
+      </h2>
       <div className="flex  justify-center w-full   ">
         <div className="flex justify-center">
           <img className="w-full md:w-[420px] h-[500px] " src={sample} alt="" />
