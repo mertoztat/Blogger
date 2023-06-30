@@ -7,16 +7,18 @@ const TrendPost = () => {
       <h2 className="text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600">
         Trending
       </h2>
-      <div className="flex  justify-center w-full   ">
+      <div className="flex-col justify-center w-full border md:flex md:flex-row ">
         <div className="flex justify-center">
-          <img className="w-full md:w-[420px] h-[500px] " src={sample} alt="" />
+          <img className="w-full sm:w-[420px] h-[500px] " src={sample} alt="" />
         </div>
 
-        <div className="md:w-1/3 p-10">
-          <span className="text-orange-600 font-semibold text-m">
-            Natural, Travel
-          </span>{" "}
-          - <span className="text-sm">June 29, 2023</span>
+        <div className="w-full md:w-1/3 p-10">
+          <div className="flex justify-between w-full sm:flex sm:justify-start gap-3 sm:items-center">
+            <span className="text-orange-600 font-semibold text-m">
+              Natural, Travel
+            </span>{" "}
+            <span className="text-sm">June 29, 2023</span>
+          </div>
           <h1 className="text-3xl font-extrabold">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto,
             modi!
