@@ -15,10 +15,10 @@ const LatestPosts: React.FC<IMockDatas> = () => {
   return (
     <>
       <div className="text-center mt-3 ">
-        <span className="inline-block text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600 pr-1 ">
+        <span className="inline-block text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600 pr-1 select-none   ">
           Latest
         </span>
-        <span className="inline-block text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600 ">
+        <span className="inline-block text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600 select-none ">
           Posts
         </span>
       </div>
