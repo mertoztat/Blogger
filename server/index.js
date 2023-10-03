@@ -19,7 +19,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(console.log("connected to mongoDB"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("connect mongodb error", err));
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -31,16 +31,16 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-app.post("/server/upload", upload.single("file"), (req, res) => {
+app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
-app.use("/server/auth", authRoute);
-app.use("/server/users", usersRoute);
-app.use("/server/posts", postRoute);
-app.use("/server/categories", categoryRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/users", usersRoute);
+app.use("/api/posts", postRoute);
+app.use("/api/categories", categoryRoute);
 
 // Server Running Log
-app.listen("5000", () => {
-  console.log("Backend is running 5000");
+app.listen("4000", () => {
+  console.log("Backend is running 4000");
 });
