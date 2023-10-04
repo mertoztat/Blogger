@@ -1,3 +1,5 @@
+import Footer from "components/Footer/Footer";
+import Header from "components/Header/Header";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -10,8 +12,9 @@ const Register = () => {
   };
   return (
     <>
-      <section className="bg-gray-50 min-h-screen flex items-center justify-center">
-        <div className="bg-gray-100 flex flex-row-reverse rounded-2xl shadow-lg max-w-6xl p-5 items-center">
+      <Header />
+      <section className="bg-gray-50  flex items-center justify-center  ">
+        <div className="bg-gray-200 my-10   flex flex-row-reverse rounded-2xl shadow-lg max-w-6xl p-5 items-center">
           <div className="md:w-1/2 px-8 md:px-16">
             <h2 className="font-bold text-2xl text-[#002D74] text-center">
               REGISTER
@@ -70,6 +73,7 @@ const Register = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };
