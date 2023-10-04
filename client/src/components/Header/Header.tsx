@@ -2,7 +2,6 @@ import logo from "assets/blogger2.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 const Header = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -20,10 +19,14 @@ const Header = () => {
         {/* desktop nav start */}
         <div className="hidden sm:block">
           <ul className="flex gap-4">
-            <li className="cursor-pointer text-lg ">Home</li>
+            <Link to="/">
+              <li className="cursor-pointer text-lg ">Home</li>
+            </Link>
             <li className="cursor-pointer text-lg ">About</li>
-            <li className="cursor-pointer text-lg ">Post</li>
             <li className="cursor-pointer text-lg ">Contact</li>
+            <Link to="/write_post">
+              <li className="cursor-pointer text-lg ">Post</li>
+            </Link>
           </ul>
         </div>
         <div className="flex items-center gap-4">
