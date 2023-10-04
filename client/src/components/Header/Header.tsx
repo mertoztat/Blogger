@@ -1,7 +1,7 @@
 import logo from "assets/blogger2.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Header = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -27,9 +27,9 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           <ul className="flex gap-4">
-            <Link to={`/login`}>
-              <li className="cursor-pointer text-lg ">Login</li>
-            </Link>
+            {/* <Link to={`/login`}> */}
+            <li className="cursor-pointer text-lg ">Login</li>
+            {/* </Link> */}
             <li className="cursor-pointer text-lg ">Register</li>
           </ul>
           {/* desktop nav end */}

@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+  /* html {
     font-family: "Ysabeau SC", sans-serif;
-  }
+  } */
 }
