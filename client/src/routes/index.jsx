@@ -13,7 +13,7 @@ const Routers = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/write_post" element={<WritePost />} />
-        <Route path="/postdetail" element={<PostDetail />} />
+        <Route path="/post/:post_id" element={<PostDetail />} />
       </Routes>
     </>
   );

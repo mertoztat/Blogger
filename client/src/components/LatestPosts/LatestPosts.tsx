@@ -1,17 +1,7 @@
-import { mockBlogs } from "components/LatestPosts/mockdata";
+import { Link } from "react-router-dom";
 
-interface IMockDatas {
-  id?: number;
-  title?: string;
-  desc?: string;
-  date?: string;
-  categories?: string[];
-  author?: string;
-  author_img?: string;
-  image?: string;
-}
-
-const LatestPosts: React.FC<IMockDatas> = () => {
+const LatestPosts = ({ posts }: any) => {
+  console.log("POST: ", posts);
   return (
     <>
       <div className="text-center mt-3 ">
@@ -24,12 +14,15 @@ const LatestPosts: React.FC<IMockDatas> = () => {
       </div>
       <div className="max-w-[1200px] mx-auto">
         <div className="grid w-full  md:grid-cols-2  md:px-20 lg:grid-cols-3 gap-4  ">
-          {mockBlogs?.map((item) => (
-            <>
+          {posts?.map((item: any, index: number) => (
+            <div key={index}>
               <div className="w-full  flex flex-col justify-center md:max-w-[390px] sm:bg-white">
                 <img
                   className="w-full md:w-[390px] h-[300px]"
-                  src={item.image}
+                  src={
+                    item?.image ||
+                    "https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2948&q=80"
+                  }
                   alt=""
                 />
                 {/* card desc */}
@@ -39,21 +32,35 @@ const LatestPosts: React.FC<IMockDatas> = () => {
                   </span>
                   <span className="text-sm">{item.date}</span>
                 </div>
-                <h1 className="text-xl font-extrabold p-2">{item.title}</h1>
+                <Link to={`/post/${item?._id}`}>
+                  <h1 className="text-xl font-extrabold p-2">{item.title}</h1>
+                </Link>
                 <p className="px-2">{item.desc}</p>
-                <div className="flex items-center gap-2 justify-end p-2">
-                  <img
-                    className="w-[40px] h-[40px]  rounded-full"
-                    src={item.author_img}
-                    alt=""
-                  />
-                  <div className="flex flex-col">
-                    <span className="font-extrabold">{item.author}</span>
-                    <span>Dog</span>
+
+                {/* Resim ve yazar adı eklenecek */}
+                <div className="flex items-center gap-2 justify-between p-2">
+                  <div className="text-gray-400 text-xs">
+                    {new Date(item?.createdAt).toDateString()}
+                  </div>
+                  <div className="flex gap-1">
+                    <img
+                      className="w-[40px] h-[40px]  rounded-full"
+                      src={
+                        item.author_img ||
+                        "https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2948&q=80"
+                      }
+                      alt=""
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-extrabold">
+                        {item?.author || "mert"}
+                      </span>
+                      <span>Dog</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           ))}
         </div>
       </div>
