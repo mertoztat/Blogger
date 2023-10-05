@@ -27,3 +27,12 @@ export const getPostDetail = async (id: any) => {
     console.log(error);
   }
 };
+
+export const getUserPost = async (user: any) => {
+  try {
+    const response = await api.get(`/posts/${user}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

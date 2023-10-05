@@ -1,3 +1,4 @@
+import axios from "axios";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
 import { useState } from "react";
@@ -7,8 +8,37 @@ import { Link } from "react-router-dom";
 const Register = () => {
   const [hiddenPass, setHiddenPass] = useState<boolean>(false);
 
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
   const showPass = () => {
     setHiddenPass(!hiddenPass);
+  };
+
+  const handleChange = (e: any) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/auth/register", {
+        username: form.username,
+        password: form.password,
+        email: form.email,
+      });
+      if (response.data && response.status === 200) {
+        window.location.assign("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -23,18 +53,22 @@ const Register = () => {
               If you aren't already a member, easily register in
             </p>
 
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
                 className="p-2 mt-8 rounded-xl border"
                 type="text"
                 name="username"
                 placeholder="Username"
+                value={form.username}
+                onChange={handleChange}
               />
               <input
                 className="p-2 rounded-xl border w-full"
                 type="email"
                 name="email"
                 placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
               />
               <div className="relative">
                 <input
@@ -42,6 +76,8 @@ const Register = () => {
                   type={hiddenPass ? "text" : "password"}
                   name="password"
                   placeholder="Password"
+                  value={form.password}
+                  onChange={handleChange}
                 />
                 <span
                   onClick={showPass}

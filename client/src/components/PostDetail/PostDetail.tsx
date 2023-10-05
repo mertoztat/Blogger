@@ -1,8 +1,29 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import icon from "../../assets/icon.png";
+import { getPostDetail } from "services/api";
 
 const PostDetail = () => {
+  const [post, setPost] = useState<any>([]);
+  const location = useLocation();
+  const id = location.pathname.slice(6);
+
+  useEffect(() => {
+    const fetch = async (id: any) => {
+      try {
+        const response = await getPostDetail(id);
+        setPost(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetch(id);
+  }, [id]);
+
+  console.log("post detail", post);
+
   return (
     <div className=" max-w-7xl mx-auto">
       <div className="">
@@ -17,8 +38,10 @@ const PostDetail = () => {
           <div className="flex items-center gap-2 ">
             <img src={icon} alt="photos" className="h-12 w-12" />
             <p className="flex flex-col text-gray-500 text-sm">
-              by Mert Öztat
-              <p className="text-xs text-gray-500">04.10.2023</p>
+              <Link to={`/?user=${post?.username}`}>by {post?.username}</Link>
+              <p className="text-xs text-gray-500">
+                {new Date(post?.createdAt).toDateString()}
+              </p>
             </p>
           </div>
 
@@ -33,39 +56,10 @@ const PostDetail = () => {
         </div>
 
         <h1 className="font-bold text-2xl text-center text-black my-2">
-          Lorem ipsum dolor
+          {post?.title}
         </h1>
         <div className="w-full  flex justify-center">
-          <p className="w-2/3">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error
-            quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
-            Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi
-            eos! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste
-            error quibusdam ipsa quis quidem doloribus eos, dolore ea iusto
-            impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas a
-            odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea
-            iusto impedit! Voluptatum necessitatibus eum beatae, adipisci
-            voluptas a odit modi eos! Lorem, ipsum dolor sit amet consectetur
-            adipisicing elit. Iste error quibusdam ipsa quis quidem doloribus
-            eos, dolore ea iusto impedit! Voluptatum necessitatibus eum beatae,
-            adipisci voluptas a odit modi eos! Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Iste error quibusdam ipsa quis quidem
-            doloribus eos, dolore ea iusto impedit! Voluptatum necessitatibus
-            eum beatae, adipisci voluptas a odit modi eos!
-            <br />
-            <br />
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste error
-            quibusdam ipsa quis quidem doloribus eos, dolore ea iusto impedit!
-            Voluptatum necessitatibus eum beatae, adipisci voluptas a odit modi
-            eos! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste
-            error quibusdam ipsa quis quidem doloribus eos, dolore ea iusto
-            impedit! Voluptatum necessitatibus eum beatae, adipisci voluptas a
-            odit modi eos! Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Iste error quibusdam ipsa quis quidem doloribus eos, dolore ea
-            iusto impedit! Voluptatum necessitatibus eum beatae, adipisci
-            voluptas a odit modi eos! Lorem, ipsum dolor sit amet consectetur.
-          </p>
+          <p className="w-2/3">{post?.desc}</p>
         </div>
       </div>
     </div>
