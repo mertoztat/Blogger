@@ -1,4 +1,4 @@
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,8 +11,16 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <section className="bg-gray-50 min-h-screen flex items-center justify-center">
-        <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-6xl p-5 items-center">
+      <section className="bg-gray-50 min-h-screen flex items-center justify-center ">
+        <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-6xl p-5 items-center relative">
+          <span className="absolute top-6 left-3  hover:transition hover:scale-105 hover:duration-300 ease-in-out">
+            <Link to="/">
+              <FaArrowLeft
+                className="bg-[#ff8a4f] p-2.5 rounded-full text-white cursor-pointer  "
+                size={40}
+              />
+            </Link>
+          </span>
           <div className="md:w-1/2 px-8 md:px-16">
             <h2 className="font-bold text-2xl text-[#002D74] text-center">
               Login

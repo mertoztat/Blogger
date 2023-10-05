@@ -13,9 +13,9 @@ const Header = () => {
   return (
     <>
       <header className="flex items-center justify-between px-10 py-4 gap-4 w-full">
-        <div className="">
+        <Link to="/">
           <img className="w-32" src={logo} alt="" />
-        </div>
+        </Link>
         {/* desktop nav start */}
         <div className="hidden sm:block">
           <ul className="flex gap-4">
