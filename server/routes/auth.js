@@ -31,12 +31,16 @@ router.post("/login", async (req, res) => {
     // UserSchemadaki userı buluyoruz.
     const user = await User.findOne({ username: req.body.username });
     // // user bulunamadıysa
-    !user && res.status(400).json("Wrong Credentitals");
+    if (!user) {
+      return res.status(400).json("Wrong Credentials");
+    }
 
     // // hashlenmiş password ile gönderilen passwordu compare et.
 
     const validated = await bcrypt.compare(req.body.password, user.password);
-    !validated && res.status(400).json("Wrong credentials!");
+    if (!validated) {
+      return res.status(400).json("Wrong credentials!");
+    }
 
     const { password, ...others } = user._doc;
 
