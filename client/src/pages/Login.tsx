@@ -1,14 +1,48 @@
 import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "store/store";
+import { loginUser } from "store/feature/auth/authSlice";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e: any) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const [hiddenPass, setHiddenPass] = useState<boolean>(false);
 
   const showPass = () => {
     setHiddenPass(!hiddenPass);
   };
 
+  const { loading, error, userInfo, success } = useSelector(
+    (state: any) => state.auth
+  );
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    dispatch(loginUser(form));
+  };
+
+  useEffect(() => {
+    if (success) {
+      navigate("/");
+      console.log("render");
+    }
+  }, [success]);
+
+  console.log("userInfo", userInfo);
   return (
     <>
       <section className="bg-gray-50 min-h-screen flex items-center justify-center ">
@@ -29,12 +63,14 @@ const Login: React.FC = () => {
               If you are already a member, easily log in
             </p>
 
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
                 className="p-2 mt-8 rounded-xl border"
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={form.username}
+                onChange={handleChange}
               />
               <div className="relative">
                 <input
@@ -42,6 +78,8 @@ const Login: React.FC = () => {
                   type={hiddenPass ? "text" : "password"}
                   name="password"
                   placeholder="Password"
+                  value={form.password}
+                  onChange={handleChange}
                 />
                 <span
                   onClick={showPass}

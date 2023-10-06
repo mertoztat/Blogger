@@ -1,12 +1,21 @@
 import axios from "axios";
 import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "store/feature/auth/authSlice";
+import { AppDispatch } from "store/store";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [hiddenPass, setHiddenPass] = useState<boolean>(false);
+
+  const { loading, userInfo, error, success } = useSelector(
+    (state: any) => state.auth
+  );
+  const dispatch = useDispatch<AppDispatch>();
 
   const [form, setForm] = useState({
     username: "",
@@ -27,18 +36,20 @@ const Register = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("/auth/register", {
-        username: form.username,
-        password: form.password,
-        email: form.email,
-      });
-      if (response.data && response.status === 200) {
-        window.location.assign("/login");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+
+    dispatch(registerUser(form));
+    // try {
+    //   const response = await axios.post("/auth/register", {
+    //     username: form.username,
+    //     password: form.password,
+    //     email: form.email,
+    //   });
+    //   if (response.data && response.status === 200) {
+    //     navigate("/login");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <>
