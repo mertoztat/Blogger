@@ -3,12 +3,13 @@ import Header from "../components/Header/Header";
 import LatestPosts from "../components/LatestPosts/LatestPosts";
 import Footer from "components/Footer/Footer";
 import { useEffect, useState } from "react";
-import { getAllPost } from "../services/api";
+import { getAllPost, getUserPost } from "../services/api";
+import { useLocation } from "react-router-dom";
 
 interface IProps {
   id?: string;
-  title?: string;
   desc?: string;
+  title?: string;
   username?: string;
   categories?: string[];
   createdAt?: string;
@@ -18,18 +19,20 @@ interface IProps {
 
 const Home: React.FC<IProps> = () => {
   const [posts, setPosts] = useState([]);
+  const { search } = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getAllPost();
+        // const response = await getUserPost(search);
         setPosts(response);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return (
     <>
