@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const LatestPosts = ({ posts }: any) => {
-  console.log("POST: ", posts);
   return (
     <>
       <div className="text-center mt-3 ">
