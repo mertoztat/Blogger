@@ -1,14 +1,23 @@
-import logo from "assets/blogger2.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "assets/blogger2.png";
+import user_img from "assets/profile.jpg";
+import Dropdown from "components/UI/Dropdown";
 
 const Header = () => {
   const [hamburger, setHamburger] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleClick = () => {
     setHamburger(!hamburger);
   };
+
+  const hideDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const user = true;
 
   return (
     <>
@@ -31,12 +40,46 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           <ul className="flex gap-4">
-            <Link to={`/login`}>
-              <li className="cursor-pointer text-lg ">Login</li>
-            </Link>
-            <Link to={`/register`}>
-              <li className="cursor-pointer text-lg ">Register</li>
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-2 relative">
+                <img
+                  src={user_img}
+                  alt=""
+                  className="w-12 h-12 object-cover rounded-full"
+                />
+                <button
+                  className="text-white bg-gray-700 hover:bg-gray-600  font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
+                  type="button"
+                  onClick={hideDropdown}
+                >
+                  Mert
+                  <svg
+                    className="w-4 h-4 ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    ></path>
+                  </svg>
+                </button>
+                {showDropdown && <Dropdown />}
+              </div>
+            ) : (
+              <>
+                <Link to={`/login`}>
+                  <li className="cursor-pointer text-lg ">Login</li>
+                </Link>
+                <Link to={`/register`}>
+                  <li className="cursor-pointer text-lg ">Register</li>
+                </Link>{" "}
+              </>
+            )}
           </ul>
           {/* desktop nav end */}
 
