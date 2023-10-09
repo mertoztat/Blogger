@@ -1,9 +1,24 @@
-const Dropdown = () => {
-  const dropItems = [
-    { text: "My Blogs", href: "/" },
-    { text: "Settings", href: "/" },
-    { text: "Log out", href: "/" },
-  ];
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+interface IProps {
+  getUserInfo: any;
+}
+
+const Dropdown: React.FC<IProps> = ({ getUserInfo }) => {
+  console.log("dropdown: ", getUserInfo);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedOut) {
+      localStorage.removeItem("user");
+      window.location.assign("/");
+    }
+  }, [isLoggedOut]);
+
+  const logout = () => {
+    setIsLoggedOut(true);
+  };
 
   return (
     <>
@@ -12,22 +27,29 @@ const Dropdown = () => {
         id="dropdown"
       >
         <div className="px-4 py-3 w-44">
-          <span className="block text-sm">Mert Öztat</span>
+          <span className="block text-sm">{getUserInfo?.username}</span>
           <span className="block text-sm font-medium text-white truncate">
-            mert@test.com
+            {getUserInfo?.email}
           </span>
         </div>
         <ul aria-labelledby="dropdown">
-          {dropItems.map((item, index) => (
-            <li key={index}>
-              <a
-                href={item.href}
-                className="text-sm hover:bg-gray-700 text-white block px-4 py-2"
-              >
-                {item.text}
-              </a>
+          <Link to={`/blog/${getUserInfo?.username}`}>
+            <li className="text-sm hover:bg-gray-700 text-white block px-4 py-2 cursor-pointer">
+              My Blogs
             </li>
-          ))}
+          </Link>
+          <Link to={`/settings/${getUserInfo?.username}`}>
+            <li className="text-sm hover:bg-gray-700 text-white block px-4 py-2 cursor-pointer">
+              Settings
+            </li>
+          </Link>
+
+          <li
+            className="text-sm hover:bg-gray-700 text-white block px-4 py-2 cursor-pointer"
+            onClick={logout}
+          >
+            Logout
+          </li>
         </ul>
       </div>
     </>

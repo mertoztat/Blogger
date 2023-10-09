@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const LatestPosts = ({ posts }: any) => {
+  const publicFolder = "http://localhost:4000/images/";
   return (
     <>
       <div className="text-center mt-3 ">
@@ -16,14 +17,13 @@ const LatestPosts = ({ posts }: any) => {
           {posts?.map((item: any, index: number) => (
             <div key={index}>
               <div className="w-full  flex flex-col justify-center md:max-w-[390px] sm:bg-white">
-                <img
-                  className="w-full md:w-[390px] h-[300px]"
-                  src={
-                    item?.image ||
-                    "https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2948&q=80"
-                  }
-                  alt=""
-                />
+                {item.photo && (
+                  <img
+                    className="w-full md:w-[400px] md:object-cover h-[300px]"
+                    src={publicFolder + item.photo}
+                    alt=""
+                  />
+                )}
                 {/* card desc */}
                 <div className="flex justify-between w-full p-2">
                   <span className="text-orange-600 font-semibold text-sm">
@@ -51,10 +51,7 @@ const LatestPosts = ({ posts }: any) => {
                       alt=""
                     />
                     <div className="flex flex-col">
-                      <span className="font-extrabold">
-                        {item?.author || "mert"}
-                      </span>
-                      <span>Dog</span>
+                      <span className="font-extrabold">{item?.username}</span>
                     </div>
                   </div>
                 </div>

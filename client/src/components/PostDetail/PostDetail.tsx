@@ -9,6 +9,12 @@ const PostDetail = () => {
   const location = useLocation();
   const id = location.pathname.slice(6);
 
+  const publicFolder = "http://localhost:4000/images/";
+
+  const getUserInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user") || "")
+    : null;
+
   useEffect(() => {
     const fetch = async (id: any) => {
       try {
@@ -25,15 +31,17 @@ const PostDetail = () => {
   console.log("post detail", post);
 
   return (
-    <div className=" max-w-7xl mx-auto">
-      <div className="">
-        <img
-          className="w-full h-96 rounded-t-lg"
-          src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-          alt=""
-        />
+    <div className=" max-w-7xl mx-auto ">
+      <div className=" flex flex-col items-center">
+        {post.photo && (
+          <img
+            className="w-[800px] h-96 rounded-b-lg object-cover"
+            src={publicFolder + post?.photo}
+            alt=""
+          />
+        )}
 
-        {/* eidit */}
+        {/* edit */}
         <div className="flex justify-between items-center w-full p-6">
           <div className="flex items-center gap-2 ">
             <img src={icon} alt="photos" className="h-12 w-12" />
@@ -45,14 +53,16 @@ const PostDetail = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span>
-              <FaEdit />
-            </span>
-            <span>
-              <FaTrash />
-            </span>
-          </div>
+          {post?.username === getUserInfo.username && (
+            <div className="flex items-center gap-3">
+              <span>
+                <FaEdit />
+              </span>
+              <span>
+                <FaTrash />
+              </span>
+            </div>
+          )}
         </div>
 
         <h1 className="font-bold text-2xl text-center text-black my-2">

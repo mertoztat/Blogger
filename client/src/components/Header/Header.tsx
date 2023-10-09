@@ -1,6 +1,6 @@
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "assets/blogger2.png";
 import user_img from "assets/profile.jpg";
 import Dropdown from "components/UI/Dropdown";
@@ -9,6 +9,10 @@ const Header = () => {
   const [hamburger, setHamburger] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const getUserInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user") || "")
+    : null;
+
   const handleClick = () => {
     setHamburger(!hamburger);
   };
@@ -16,8 +20,6 @@ const Header = () => {
   const hideDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
-  const user = true;
 
   return (
     <>
@@ -40,7 +42,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           <ul className="flex gap-4">
-            {user ? (
+            {getUserInfo ? (
               <div className="flex items-center gap-2 relative">
                 <img
                   src={user_img}
@@ -52,7 +54,7 @@ const Header = () => {
                   type="button"
                   onClick={hideDropdown}
                 >
-                  Mert
+                  {getUserInfo?.username}
                   <svg
                     className="w-4 h-4 ml-2"
                     fill="none"
@@ -61,14 +63,14 @@ const Header = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M19 9l-7 7-7-7"
                     ></path>
                   </svg>
                 </button>
-                {showDropdown && <Dropdown />}
+                {showDropdown && <Dropdown getUserInfo={getUserInfo} />}
               </div>
             ) : (
               <>
