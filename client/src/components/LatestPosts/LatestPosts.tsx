@@ -2,6 +2,13 @@ import { Link } from "react-router-dom";
 
 const LatestPosts = ({ posts }: any) => {
   const publicFolder = "http://localhost:4000/images/";
+
+  const sortedDate = posts?.sort((a: any, b: any) => {
+    const dateA: any = new Date(a.createdAt);
+    const dateB: any = new Date(b.createdAt);
+    return dateB - dateA; // Tarihleri karşılaştırarak sıralama indeksi döndürülüyor.
+  });
+
   return (
     <>
       <div className="text-center mt-3 ">
@@ -14,7 +21,7 @@ const LatestPosts = ({ posts }: any) => {
       </div>
       <div className="max-w-[1200px] mx-auto">
         <div className="grid w-full  md:grid-cols-2  md:px-20 lg:grid-cols-3 gap-4  ">
-          {posts?.map((item: any, index: number) => (
+          {sortedDate?.map((item: any, index: number) => (
             <div key={index}>
               <div className="w-full  flex flex-col justify-center md:max-w-[390px] sm:bg-white">
                 {item.photo && (
