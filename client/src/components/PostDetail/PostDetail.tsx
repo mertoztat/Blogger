@@ -118,12 +118,16 @@ const PostDetail = () => {
         <div className="flex justify-between items-center w-full p-6">
           <div className="flex items-center gap-2 ">
             <img src={icon} alt="photos" className="h-12 w-12" />
-            <p className="flex flex-col text-gray-500 text-sm">
-              <Link to={`/?user=${post?.username}`}>by {post?.username}</Link>
-              <p className="text-xs text-gray-500">
+            <div>
+              <Link to={`/?user=${post?.username}`}>
+                <p className="flex flex-col text-gray-500 text-sm">
+                  by {post?.username}
+                </p>
+              </Link>
+              <p className="text-xs text-gray-500 mt-1">
                 {new Date(post?.createdAt).toDateString()}
               </p>
-            </p>
+            </div>
           </div>
 
           {post?.username === getUserInfo.username && (
