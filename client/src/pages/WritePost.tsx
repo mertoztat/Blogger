@@ -46,10 +46,10 @@ const WritePost = () => {
   return (
     <>
       <Header />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl flex flex-col items-center  mx-auto  ">
         {file && (
           <img
-            className="w-full h-96 rounded-lg"
+            className="w-[800px]  h-96 rounded-b-lg object-cover"
             src={URL.createObjectURL(file)}
             alt=""
           />

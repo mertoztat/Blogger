@@ -34,7 +34,7 @@ const LatestPosts = ({ posts }: any) => {
                 <Link to={`/post/${item?._id}`}>
                   <h1 className="text-xl font-extrabold p-2">{item.title}</h1>
                 </Link>
-                <p className="px-2">{item.desc}</p>
+                <p className="px-2">{item.desc.slice(0, 200) + "..."}</p>
 
                 {/* Resim ve yazar adı eklenecek */}
                 <div className="flex items-center gap-2 justify-between p-2">
