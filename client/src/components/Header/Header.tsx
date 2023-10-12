@@ -2,7 +2,6 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "assets/blogger2.png";
-import user_img from "assets/profile.jpg";
 import Dropdown from "components/UI/Dropdown";
 
 const Header = () => {
@@ -13,6 +12,8 @@ const Header = () => {
     ? JSON.parse(localStorage.getItem("user") || "")
     : null;
 
+  const publicFolder = "http://localhost:4000/images/";
+
   const handleClick = () => {
     setHamburger(!hamburger);
   };
@@ -20,6 +21,8 @@ const Header = () => {
   const hideDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+
+  console.log("photoss", getUserInfo);
 
   return (
     <>
@@ -47,7 +50,7 @@ const Header = () => {
             {getUserInfo ? (
               <div className="flex items-center gap-2 relative">
                 <img
-                  src={user_img}
+                  src={publicFolder + getUserInfo?.profilePic}
                   alt=""
                   className="w-12 h-12 object-cover rounded-full"
                 />
