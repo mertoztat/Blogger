@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import LatestPosts from "../components/LatestPosts/LatestPosts";
 import Footer from "components/Footer/Footer";
 import { useEffect, useState } from "react";
-import { getAllPost, getUserPost } from "../services/api";
+import { getAllPost } from "../services/api";
 import { useLocation } from "react-router-dom";
 
 interface IProps {

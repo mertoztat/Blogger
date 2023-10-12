@@ -9,6 +9,7 @@ interface IProps {
   email: string;
   password: string;
   success: string;
+  userInfo: any[];
 }
 
 export const registerUser = createAsyncThunk<
@@ -71,13 +72,13 @@ export const loginUser = createAsyncThunk<
 });
 
 // initialize userToken from local storage
-const userInfo = localStorage.getItem("user")
-  ? localStorage.getItem("user")
-  : null;
+// const userInfo = localStorage.getItem("user")
+//   ? localStorage.getItem("user")
+//   : null;
 
 const initialState = {
   loading: false,
-  userInfo: userInfo,
+  userInfo: [] as IProps[],
   error: false,
   success: false,
 };
@@ -108,7 +109,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.success = true;
-        // state.userInfo = payload
+        state.userInfo.push(payload);
       })
       .addCase(loginUser.rejected, (state) => {
         state.loading = false;

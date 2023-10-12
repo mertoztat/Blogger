@@ -6,7 +6,6 @@ interface IProps {
 }
 
 const Dropdown: React.FC<IProps> = ({ getUserInfo }) => {
-  console.log("dropdown: ", getUserInfo);
   const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   useEffect(() => {
@@ -38,11 +37,13 @@ const Dropdown: React.FC<IProps> = ({ getUserInfo }) => {
               My Blogs
             </li>
           </Link>
-          <Link to={`/settings/${getUserInfo?.username}`}>
-            <li className="text-sm hover:bg-gray-700 text-white block px-4 py-2 cursor-pointer">
-              Settings
-            </li>
-          </Link>
+          {getUserInfo && (
+            <Link to={`/settings/${getUserInfo?.username}`}>
+              <li className="text-sm hover:bg-gray-700 text-white block px-4 py-2 cursor-pointer">
+                Settings
+              </li>
+            </Link>
+          )}
 
           <li
             className="text-sm hover:bg-gray-700 text-white block px-4 py-2 cursor-pointer"
