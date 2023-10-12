@@ -1,7 +1,29 @@
-import sample from "assets/example.jpg";
-import profile from "assets/profile.jpg";
+import { useEffect, useState } from "react";
 
 const TrendPost = ({ posts }: any) => {
+  const [currentPost, setCurrentPost] = useState<any>(null);
+  const publicFolder = "http://localhost:4000/images/";
+
+  useEffect(() => {
+    const updateTrendPost = () => {
+      const randomIndex = Math.floor(Math.random() * posts.length);
+      const randomPost = posts[randomIndex];
+      setCurrentPost(randomPost);
+    };
+
+    updateTrendPost();
+    // 1 haftanın mat olarak karşılığı
+    const interval = setInterval(updateTrendPost, 7 * 24 * 60 * 60 * 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [posts]);
+
+  const getUserInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user") || "")
+    : null;
+
   return (
     <div>
       <h2 className="text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600 select-none">
@@ -9,7 +31,11 @@ const TrendPost = ({ posts }: any) => {
       </h2>
       <div className="flex-col justify-center w-full  md:flex md:flex-row ">
         <div className="flex justify-center">
-          <img className="w-full sm:w-[420px] h-[500px] " src={sample} alt="" />
+          <img
+            className="w-full sm:w-[420px] h-[500px] "
+            src={publicFolder + currentPost?.photo}
+            alt=""
+          />
         </div>
 
         <div className="w-full md:w-1/3 p-10">
@@ -17,27 +43,20 @@ const TrendPost = ({ posts }: any) => {
             <span className="text-orange-600 font-semibold text-m">
               Natural, Travel
             </span>{" "}
-            <span className="text-sm">June 29, 2023</span>
+            <span className="text-sm">
+              {new Date(currentPost?.createdAt).toDateString()}
+            </span>
           </div>
-          <h1 className="text-3xl font-extrabold">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto,
-            modi!
-          </h1>
-          <p className="my-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            ducimus assumenda explicabo atque, temporibus asperiores, libero a
-            voluptate blanditiis obcaecati delectus autem voluptatum dolorum
-            eaque cupiditate vitae...
-          </p>
+          <h1 className="text-3xl font-extrabold">{currentPost?.title}</h1>
+          <p className="my-4">{currentPost?.desc}</p>
           <div className="flex items-center gap-2 justify-end">
             <img
               className="w-[50px] h-[50px]  rounded-full"
-              src={profile}
+              src={publicFolder + getUserInfo?.photo}
               alt=""
             />
             <div className="flex flex-col">
               <span className="font-extrabold">Mars</span>
-              <span>Dog</span>
             </div>
           </div>
         </div>
