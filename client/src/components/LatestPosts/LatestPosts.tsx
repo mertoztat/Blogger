@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 const LatestPosts = ({ posts }: any) => {
   const publicFolder = "http://localhost:4000/images/";
 
+  const getUserInfo = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user") || "")
+    : null;
+
   const sortedDate = posts?.sort((a: any, b: any) => {
     const dateA: any = new Date(a.createdAt);
     const dateB: any = new Date(b.createdAt);
@@ -51,10 +55,7 @@ const LatestPosts = ({ posts }: any) => {
                   <div className="flex gap-1">
                     <img
                       className="w-[40px] h-[40px]  rounded-full"
-                      src={
-                        item.author_img ||
-                        "https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2948&q=80"
-                      }
+                      src={publicFolder + getUserInfo?.profilePic}
                       alt=""
                     />
                     <div className="flex flex-col">
