@@ -25,7 +25,6 @@ const Home: React.FC<IProps> = () => {
     const fetchData = async () => {
       try {
         const response = await getAllPost();
-        // const response = await getUserPost(search);
         setPosts(response);
       } catch (error) {
         console.log(error);
@@ -37,7 +36,7 @@ const Home: React.FC<IProps> = () => {
   return (
     <>
       <Header />
-      <TrendPost />
+      <TrendPost posts={posts} />
       <LatestPosts posts={posts} />
       <Footer />
     </>

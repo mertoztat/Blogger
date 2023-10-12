@@ -1,7 +1,7 @@
 import sample from "assets/example.jpg";
 import profile from "assets/profile.jpg";
 
-const TrendPost = () => {
+const TrendPost = ({ posts }: any) => {
   return (
     <div>
       <h2 className="text-center text-4xl font-bold mt-4 mb-10 first-letter:text-orange-600 select-none">

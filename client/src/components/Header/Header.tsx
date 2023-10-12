@@ -1,6 +1,6 @@
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "assets/blogger2.png";
 import user_img from "assets/profile.jpg";
 import Dropdown from "components/UI/Dropdown";
@@ -35,9 +35,11 @@ const Header = () => {
             </Link>
             <li className="cursor-pointer text-lg ">About</li>
             <li className="cursor-pointer text-lg ">Contact</li>
-            <Link to="/write_post">
-              <li className="cursor-pointer text-lg ">Post</li>
-            </Link>
+            {getUserInfo && (
+              <Link to="/write_post">
+                <li className="cursor-pointer text-lg ">Post</li>
+              </Link>
+            )}
           </ul>
         </div>
         <div className="flex items-center gap-4">

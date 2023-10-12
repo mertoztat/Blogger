@@ -6,7 +6,7 @@ const LatestPosts = ({ posts }: any) => {
   const sortedDate = posts?.sort((a: any, b: any) => {
     const dateA: any = new Date(a.createdAt);
     const dateB: any = new Date(b.createdAt);
-    return dateB - dateA; // Tarihleri karşılaştırarak sıralama indeksi döndürülüyor.
+    return dateB - dateA;
   });
 
   return (
