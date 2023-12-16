@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const LatestPosts = ({ posts }: any) => {
-  const publicFolder = "http://localhost:4000/images/";
+  const publicFolder = "https://blogger-ecru.vercel.app/images/";
 
   const getUserInfo = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user") || "")

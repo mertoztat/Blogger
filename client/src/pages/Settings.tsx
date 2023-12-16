@@ -2,7 +2,6 @@ import axios from "axios";
 import Header from "components/Header/Header";
 import { useState } from "react";
 import { BsFillCloudUploadFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
@@ -11,7 +10,7 @@ const Settings = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const PF = "http://localhost:4000/images/";
+  const PF = "https://blogger-ecru.vercel.app/images/";
 
   const getUserInfo = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user") || "")

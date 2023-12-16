@@ -37,9 +37,11 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
+app.use(cors());
+// Allow specific origin(s)
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://blogger-ecru.vercel.app",
   })
 );
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "/";
+const BASE_URL = "https://blogger-ecru.vercel.app";
 
 const api = axios.create({
   baseURL: BASE_URL,

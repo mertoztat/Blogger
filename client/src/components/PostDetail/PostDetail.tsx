@@ -14,7 +14,7 @@ const PostDetail = () => {
   const id = location.pathname.slice(6);
   const navigate = useNavigate();
 
-  const publicFolder = "http://localhost:4000/images/";
+  const publicFolder = "https://blogger-ecru.vercel.app/images/";
 
   const getUserInfo = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user") || "")
@@ -38,7 +38,7 @@ const PostDetail = () => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/posts/${post._id}`,
+        `https://blogger-ecru.vercel.app/posts/${post._id}`,
         {
           data: { username: getUserInfo?.username },
         }
@@ -56,7 +56,7 @@ const PostDetail = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const response = await axios.put(
-      `http://localhost:4000/api/posts/${post._id}`,
+      `https://blogger-ecru.vercel.app/posts/${post._id}`,
       {
         username: getUserInfo?.username,
         title: title,

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const TrendPost = ({ posts }: any) => {
   const [currentPost, setCurrentPost] = useState<any>(null);
-  const publicFolder = "http://localhost:4000/images/";
+  const publicFolder = "https://blogger-ecru.vercel.app/images/";
 
   useEffect(() => {
     const updateTrendPost = () => {

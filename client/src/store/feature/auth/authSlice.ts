@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const URL = "http://localhost:4000/api";
+const URL = "https://blogger-ecru.vercel.app";
 
 interface IProps {
   username: string;

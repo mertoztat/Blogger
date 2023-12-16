@@ -12,7 +12,7 @@ const Header = () => {
     ? JSON.parse(localStorage.getItem("user") || "")
     : null;
 
-  const publicFolder = "http://localhost:4000/images/";
+  const publicFolder = "https://blogger-ecru.vercel.app/images/";
 
   const handleClick = () => {
     setHamburger(!hamburger);
