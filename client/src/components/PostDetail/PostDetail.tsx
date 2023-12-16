@@ -35,8 +35,6 @@ const PostDetail = () => {
     fetchPost(id);
   }, [id]);
 
-  // console.log("post edit", post);
-
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
@@ -130,7 +128,7 @@ const PostDetail = () => {
             </div>
           </div>
 
-          {post?.username === getUserInfo.username && (
+          {post?.username === getUserInfo?.username && (
             <div className="flex items-center gap-3">
               <span onClick={() => setUpdatedMode(true)}>
                 <FaEdit />
