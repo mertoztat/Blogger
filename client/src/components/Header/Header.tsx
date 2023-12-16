@@ -12,7 +12,7 @@ const Header = () => {
     ? JSON.parse(localStorage.getItem("user") || "")
     : null;
 
-  const publicFolder = "https://blogger-ecru.vercel.app/images/";
+  // const publicFolder = "https://blogger-ecru.vercel.app/images/";
 
   const handleClick = () => {
     setHamburger(!hamburger);
@@ -48,7 +48,8 @@ const Header = () => {
             {getUserInfo ? (
               <div className="flex items-center gap-2 relative">
                 <img
-                  src={publicFolder + getUserInfo?.profilePic}
+                  // src={publicFolder + getUserInfo?.profilePic}
+                  src=""
                   alt=""
                   className="w-12 h-12 object-cover rounded-full"
                 />

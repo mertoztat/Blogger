@@ -6,7 +6,7 @@ const TrendPost = ({ posts }: any) => {
 
   useEffect(() => {
     const updateTrendPost = () => {
-      const randomIndex = Math.floor(Math.random() * posts.length);
+      const randomIndex = Math.floor(Math.random() * posts?.length);
       const randomPost = posts[randomIndex];
       setCurrentPost(randomPost);
     };
@@ -33,7 +33,8 @@ const TrendPost = ({ posts }: any) => {
         <div className="flex justify-center">
           <img
             className="w-full sm:w-[420px] h-[500px] "
-            src={publicFolder + currentPost?.photo}
+            // src={publicFolder + currentPost?.photo}
+            src=""
             alt=""
           />
         </div>

@@ -38,7 +38,7 @@ const PostDetail = () => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://blogger-ecru.vercel.app/posts/${post._id}`,
+        `https://blogger-ecru.vercel.app/api/posts/${post._id}`,
         {
           data: { username: getUserInfo?.username },
         }
@@ -56,7 +56,7 @@ const PostDetail = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const response = await axios.put(
-      `https://blogger-ecru.vercel.app/posts/${post._id}`,
+      `https://blogger-ecru.vercel.app/api/posts/${post._id}`,
       {
         username: getUserInfo?.username,
         title: title,
@@ -75,7 +75,8 @@ const PostDetail = () => {
         {post.photo && (
           <img
             className="w-[800px] h-96 rounded-b-lg object-cover"
-            src={publicFolder + post?.photo}
+            // src={publicFolder + post?.photo}
+            src=""
             alt=""
           />
         )}
