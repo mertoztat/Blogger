@@ -4,21 +4,21 @@ const TrendPost = ({ posts }: any) => {
   const [currentPost, setCurrentPost] = useState<any>(null);
   const publicFolder = "https://blogger-ecru.vercel.app/images/";
 
-  useEffect(() => {
-    const updateTrendPost = () => {
-      const randomIndex = Math.floor(Math.random() * posts?.length);
-      const randomPost = posts[randomIndex];
-      setCurrentPost(randomPost);
-    };
+  // useEffect(() => {
+  //   const updateTrendPost = () => {
+  //     const randomIndex = Math.floor(Math.random() * posts?.length);
+  //     const randomPost = posts[randomIndex];
+  //     setCurrentPost(randomPost);
+  //   };
 
-    updateTrendPost();
-    // 1 haftanın mat olarak karşılığı
-    const interval = setInterval(updateTrendPost, 7 * 24 * 60 * 60 * 1000);
+  //   updateTrendPost();
+  //   // 1 haftanın mat olarak karşılığı
+  //   const interval = setInterval(updateTrendPost, 7 * 24 * 60 * 60 * 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [posts]);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [posts]);
 
   const getUserInfo = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user") || "")
@@ -53,7 +53,8 @@ const TrendPost = ({ posts }: any) => {
           <div className="flex items-center gap-2 justify-end">
             <img
               className="w-[50px] h-[50px]  rounded-full"
-              src={publicFolder + getUserInfo?.photo}
+              // src={publicFolder + getUserInfo?.photo}
+              src=""
               alt=""
             />
             <div className="flex flex-col">
